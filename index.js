@@ -65,13 +65,6 @@ client.on('message', msg => {
         msg.reply(insultos[Math.floor(Math.random() * 13)]);
     }
 
-    // Para probar nomas
-    /*if (msg.content === '!test'){
-        if (!esbot){
-            
-        }
-    }
-    */
 });
 
 client.login('ODM0MjYxNTg4OTYxMjYzNjg3.YH-Upg.IJRfs0lbzemzG5neT-GkhwthhZQ');
