@@ -10,7 +10,6 @@ client.on('ready', () => {
 client.on('message', msg => {
 
     var esbot = "Bot Leo" == msg.author.username;
-
     // Da los buenos dias
     if (msg.content.toLowerCase().includes('buen dia') || msg.content.toLowerCase().includes('buenos dia')) {
         if (!esbot) {
@@ -49,11 +48,16 @@ client.on('message', msg => {
     // Lo etiquetaste y pediste que insulte a otro
     if ((msg.mentions.has(client.user)) && ((msg.content.toLowerCase().includes('insulta a')) || (msg.content.toLowerCase().includes('insultalo a')) || (msg.content.toLowerCase().includes('insultalo a')))) {
         let insultos = ["Put@ de mierda", "Trol@", "Mogolic@ de mierda", "Pelotud@ de mierda", " La concha puta de tu madre", "Inutil de mierda", "Maldit@ infeliz", "Deforme de mierda"];
+        let cosasleo = ["Sos muy hermoso", "Vuelves locas a todas", "Fiu fiu!", "Tremendo pito tenes papu", "Te haria un buen brrr en las pelotas", " Ese aspecto morocho te hace hermoso bebe", "Te amo", "Todo lo que haces me vuelve calienta"];
         let usuarios = msg.mentions.members.array();
         let idbot = client.user.id;
+        let idleo = 434139753131016192;
         for (let i in usuarios) {
             if (usuarios[i] != idbot)
-                msg.channel.send("<@" + usuarios[i] + "> " + insultos[Math.floor(Math.random() * insultos.length)]);
+                if (usuarios[i] == idleo) {
+                    msg.channel.send("<@" + usuarios[i] + "> " + cosasleo[Math.floor(Math.random() * insultos.length)]);
+                } else
+                    msg.channel.send("<@" + usuarios[i] + "> " + insultos[Math.floor(Math.random() * insultos.length)]);
         }
     } else
 
