@@ -46,6 +46,17 @@ client.on('message', msg => {
         msg.reply("callate bot inutil, no servis vos!");
     } else
 
+    // Lo etiquetaste y pediste que insulte a otro
+    if ((msg.mentions.has(client.user)) && ((msg.content.toLowerCase().includes('insulta a')) || (msg.content.toLowerCase().includes('insultalo a')) || (msg.content.toLowerCase().includes('insultalo a')))) {
+        let insultos = ["Put@ de mierda", "Trol@", "Mogolic@ de mierda", "Pelotud@ de mierda", " La concha puta de tu madre", "Inutil de mierda", "Maldit@ infeliz", "Deforme de mierda"];
+        let usuarios = msg.mentions.members.array();
+        let idbot = client.user.id;
+        for (let i in usuarios) {
+            if (usuarios[i] != idbot)
+                msg.channel.send("<@" + usuarios[i] + "> " + insultos[Math.floor(Math.random() * insultos.length)]);
+        }
+    } else
+
     // Lo etiquetaste -- (msg.content.toLowerCase().includes('<@!834261588961263687>')
     if ((msg.mentions.has(client.user)) && (!msg.content.toLowerCase().includes('como esta'))) {
         let insultos = ["Que me etiquetas? chupa pija de mierda",
@@ -65,7 +76,7 @@ client.on('message', msg => {
             "Boliviano"
         ];
         console.log(insultos.length);
-        msg.reply(insultos[Math.floor(Math.random() * 13)]);
+        msg.reply(insultos[Math.floor(Math.random() * insultos.length)]);
     }
 
 });
