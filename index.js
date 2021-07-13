@@ -79,7 +79,6 @@ client.on('message', msg => {
 
     // Obtener, funciona en canal  test-de-bot
     if (msg.mentions.has(client.user) && msg.content.toLowerCase().includes('obtener123') && msg.channel.name.includes('test-de-bot') && (msg.author.id == 434139753131016192)) {
-        msg.channel.send(msg.author.id);
         if (arrPreguntas.length > 0)
             arrPreguntas.forEach(element => {
                 msg.channel.send(`${element.autor} ${element.pregunta}`);
