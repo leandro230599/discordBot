@@ -93,7 +93,7 @@ client.on('message', msg => {
         else msg.channel.send('Estoy vacio :(, agregame preguntas picantes');
     } else
     // Lo etiquetaste -- (msg.content.toLowerCase().includes('<@!834261588961263687>')
-    if ((msg.mentions.has(client.user)) && (!msg.content.toLowerCase().includes('como esta'))) {
+    if ((msg.mentions.has(client.user)) && (!msg.content.toLowerCase().includes('como esta')) && (!esbot)) {
         let insultos = ["Que me etiquetas? chupa pija de mierda",
             "Otra vez molestandome traga leche de mierda",
             "Estas alpedo no? siempre hinchando las pelotas, hace otra cosa",
