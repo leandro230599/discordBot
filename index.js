@@ -1,6 +1,7 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
-
+var contadorpreguntas = 0;
+var arrPreguntas = [];
 // Al conectarse
 client.on('ready', () => {
     console.log(`Bot conectado como ${client.user.tag}!`);
@@ -61,6 +62,37 @@ client.on('message', msg => {
         }
     } else
 
+    // Preguntas anonimas, funciona en canal pregunta y test-de-bot
+    if (msg.mentions.has(client.user) && msg.content.toLowerCase().includes('pregunta') && (msg.channel.name.includes('test-de-bot') || msg.channel.name.includes('pregunta'))) {
+        let test = msg.content.replace('pregunta', '').replace('<@!834261588961263687>', '');
+        if (!esbot) {
+            contadorpreguntas++;
+            msg.channel.send(`${contadorpreguntas}) ${test}`);
+            let aux = {
+                autor: msg.author.username,
+                pregunta: test
+            };
+            arrPreguntas.push(aux);
+            msg.delete();
+        }
+    } else
+
+    // Obtener, funciona en canal  test-de-bot
+    if (msg.mentions.has(client.user) && msg.content.toLowerCase().includes('obtener123') && msg.channel.name.includes('test-de-bot') && (msg.author.id == 434139753131016192)) {
+        msg.channel.send(msg.author.id);
+        if (arrPreguntas.length > 0)
+            arrPreguntas.forEach(element => {
+                msg.channel.send(`${element.autor} ${element.pregunta}`);
+            });
+        else msg.channel.send('No tengo ninguna informacion como para mostrarte');
+    } else
+
+    // Azar, funciona en canal pregunta y test-de-bot
+    if (msg.mentions.has(client.user) && msg.content.toLowerCase().includes('elegiazar') && (msg.channel.name.includes('test-de-bot') || msg.channel.name.includes('pregunta'))) {
+        if (arrPreguntas.length > 0)
+            msg.channel.send(`Pregunta elegida al azar: ${arrPreguntas[Math.floor(Math.random() * arrPreguntas.length)].pregunta}`);
+        else msg.channel.send('Estoy vacio :(, agregame preguntas picantes');
+    } else
     // Lo etiquetaste -- (msg.content.toLowerCase().includes('<@!834261588961263687>')
     if ((msg.mentions.has(client.user)) && (!msg.content.toLowerCase().includes('como esta'))) {
         let insultos = ["Que me etiquetas? chupa pija de mierda",
