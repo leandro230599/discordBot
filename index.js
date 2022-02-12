@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 const fs = require('fs');
-const config = require('./config.json');
+const {token:BOT_TOKEN} = require('./config.json');
 // Al conectarse
 client.on('ready', () => {
     console.log(`Bot conectado como ${client.user.tag}!`);
@@ -89,4 +89,4 @@ client.on('message', msg => {
 
 });
 
-client.login(config.token);
+client.login(BOT_TOKEN);
