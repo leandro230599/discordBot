@@ -2,6 +2,7 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 const fs = require('fs');
 require('dotenv').config();
+// Probando comentario para ver si se despliega tambien en github
 
 // Al conectarse
 client.on('ready', () => {
